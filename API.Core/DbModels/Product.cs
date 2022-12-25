@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace API.Data.DbModels
+namespace API.Core.DbModels
 {
     public class Product
     {
