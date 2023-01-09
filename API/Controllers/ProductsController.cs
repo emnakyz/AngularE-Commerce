@@ -1,8 +1,7 @@
 ﻿using API.Core.DbModels;
 using API.Core.Interfaces;
-using API.Infrastructure.DataContext;
+using API.Core.Specifications;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -30,7 +29,8 @@ namespace API.Controllers
         [HttpGet]//http verbs -> get post delete put
         public async Task<ActionResult<List<Product>>> GetProducts()
         {
-            var data = await _productRepository.ListAllAsync();
+            var spec = new  ProductsWithProductTypeAndBrandsSpecification();
+            var data = await _productRepository.ListAsync(spec);
             return Ok(data);
         }
 
