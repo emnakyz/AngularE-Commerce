@@ -11,9 +11,8 @@ using System.Threading.Tasks;
 namespace API.Controllers
 {
     //https:localhost:5001/api/products/GetProduct
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductsController : ControllerBase
+ 
+    public class ProductsController : BaseApiController
     {
 
         //private readonly StoreContext _context;
