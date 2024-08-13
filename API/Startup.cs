@@ -53,6 +53,8 @@ namespace API
 
             app.UseStatusCodePagesWithReExecute("/error/{0}");
 
+            app.UseStaticFiles();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
