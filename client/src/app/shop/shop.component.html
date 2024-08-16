@@ -30,7 +30,18 @@
 <section class="col-9">
   <div class="d-flex justify-content-between align-items-center pb-2">
      <header>
-       <span> Showing <strong>10</strong> of <strong>18</strong> Results </span>
+       <span *ngIf="this.totalCount && this.totalCount > 0"> Showing
+        <strong>
+          {{(this.shopParams.pageNumber - 1) * this.shopParams.pageSize + 1}}-
+          {{this.shopParams.pageNumber * this.shopParams.pageSize
+            > this.totalCount
+            ? this.totalCount
+            :this.shopParams.pageNumber * this.shopParams.pageSize
+          }}
+        </strong> of <strong>{{this.totalCount}}</strong> Results </span>
+        <span *ngIf="totalCount === 0">
+           There are <strong>0</strong> results for this filter
+        </span>
      </header>
      <div class="form-inline mt-2">
         <input class="form-control" style="width: 300px;" placeholder="Search" type="text">
@@ -43,10 +54,12 @@
        <app-product-item [product]="item"></app-product-item>
     </div>
   </div>
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center" *ngIf="totalCount > 0">
   <pagination
   [boundaryLinks]="true"
   [totalItems]="this.totalCount"
+  (pageChanged)="onPageChanged($event)"
+  [itemsPerPage]="this.shopParams.pageSize"
   previousText="&lsaquo;"
   nextText="&rsaquo;"
   firstText="&laquo;"
