@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 export class TestErrorComponent implements OnInit {
 
   baseUrl = environment.apiUrl;
+  validationError : any;
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
@@ -32,10 +33,12 @@ export class TestErrorComponent implements OnInit {
   }
 
   get400ValidationError(){
-    this.http.get(this.baseUrl + 'buggy/fortywto').subscribe(response=>{
+    this.http.get(this.baseUrl + 'products/fortywto').subscribe(response=>{
       console.log(response);
     },error=>{
       console.log(error);
+      this.validationError = error.errors.id;
+      console.log(this.validationError);
     })
   }
 
