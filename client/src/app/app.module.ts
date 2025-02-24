@@ -10,6 +10,7 @@ import { HomeModule } from './home/home.module';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+import { BasketModule } from './basket/basket.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
     CoreModule,
     ShopModule,
     HomeModule,
+    BasketModule,
     NgxSpinnerModule
   ],
   providers: [
