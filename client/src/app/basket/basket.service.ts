@@ -30,6 +30,7 @@ export class BasketService {
      return this.http.post(this.baseUrl + 'basket', basket)
      .subscribe((response: IBasket) => {
         this.basketSource.next(response);
+        console.log(response);
      },error =>{
         console.log(error);
      });
@@ -46,7 +47,10 @@ export class BasketService {
       this.setBasket(basket);
     }
 
-  private addOrUpdateItem(items: IBasketItem[], itemToAdd: IBasketItem, quantity: number): IBasketItem[] {
+  private addOrUpdateItem(items: IBasketItem[],
+                         itemToAdd: IBasketItem,
+                         quantity: number): IBasketItem[]
+  {
       const index = items.findIndex(i => i.id === itemToAdd.id);
       if(index === -1){
         items.push(itemToAdd);
@@ -57,13 +61,16 @@ export class BasketService {
       return items;
   }
 
-   private createBasket(): IBasket {
+   private createBasket(): IBasket
+   {
     const basket = new Basket();
     localStorage.setItem('basket_id', basket.id);
     return basket;
-  }
+   }
 
-   private mapProductItemToBasketItem(item: IProduct, quantity: number): IBasketItem {
+   private mapProductItemToBasketItem(item: IProduct,
+                                      quantity: number): IBasketItem
+    {
     return {
       id: item.id,
       productName : item.name,
